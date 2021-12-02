@@ -1,4 +1,4 @@
-function [h]=find_homotetie_man(img1,img2)
+function [h_fin]=find_homotetie_man(img1,img2)
     figure;
     subplot(1,2,1)
     imshow(img1)
@@ -18,8 +18,11 @@ function [h]=find_homotetie_man(img1,img2)
         
   
     h=(eye(8)/(transpose(A)*A))*transpose(A)*B;
-    
+    h_fin=ones(3);
+    h_fin(1,:)=h(1:3);
+    h_fin(2,:)=h(4:6);
+    h_fin(3,1:2)=h(7:8);
     disp('la matrice homotetie est ')
-    disp(h)
+    disp(h_fin);
 end
 
