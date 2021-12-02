@@ -1,4 +1,4 @@
-function [h_fin]=find_homotetie_man(img1,img2)
+function [h_fin,X2,Y2]=find_homotetie_man(img1,img2)
     figure;
     subplot(1,2,1)
     imshow(img1)
