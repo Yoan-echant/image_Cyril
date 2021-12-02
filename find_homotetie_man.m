@@ -16,8 +16,8 @@ function [h]=find_homotetie_man(img1,img2)
         B(2*i+2)=Y2(i+1);
     end
         
-    
-    h=(1/(transpose(A)*A))*transpose(A)*B;
+  
+    h=(eye(8)/(transpose(A)*A))*transpose(A)*B;
     
     disp('la matrice homotetie est ')
     disp(h)
