@@ -5,10 +5,10 @@ mask=zeros(h,w);
 
 for k=1:h
     for j=1:w
-        x=floor((hmat(1,1)*k+hmat(1,2)*j+hmat(1,3))/(hmat(3,1)*k+hmat(3,2)*j+hmat(3,3)));
-        y=floor((hmat(2,1)*k+hmat(2,2)*j+hmat(2,3))/(hmat(3,1)*k+hmat(3,2)*j+hmat(3,3)));
+        y=floor((hmat(1,1)*k+hmat(1,2)*j+hmat(1,3))/(hmat(3,1)*k+hmat(3,2)*j+hmat(3,3)));
+        x=floor((hmat(2,1)*k+hmat(2,2)*j+hmat(2,3))/(hmat(3,1)*k+hmat(3,2)*j+hmat(3,3)));
         if (x>0 && x<h+1 && y>0 && y<w+1)
-            imgtransforme(x,y)= img1(k,j);
+            imgtransforme(x,y)= img1(j,k);
             mask(x,y)=1;
         end
 

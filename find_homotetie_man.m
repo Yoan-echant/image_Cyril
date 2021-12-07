@@ -1,13 +1,13 @@
 function [h_fin]=find_homotetie_man(img1,img2)
 
     figure;
-    subplot(1,2,1)
-    imshow(img1)
+    %subplot(1,2,1)
+    %imshow(img1)
     %[X1,Y1]=ginput(4);
     
     Y1=[0 0 size(img1,1) size(img1,1)];
     X1=[0 size(img1,2) size(img1,2) 0];
-    subplot(1,2,2)
+    %subplot(1,2,2)
     imshow(img2)
     [X2,Y2]=ginput(4);
 
@@ -27,7 +27,6 @@ function [h_fin]=find_homotetie_man(img1,img2)
     h_fin(2,:)=h(4:6);
     h_fin(3,1:2)=h(7:8);
 
-    disp('la matrice homotetie est ')
-    disp(h_fin);
+    
 
 
