@@ -2,18 +2,17 @@ clc;
 clear;
 close all;
 
-img1=imread('cameraman.tif');
-img2=imread('centrale.tif');
-[h,X,Y]=find_homotetie_man(img2,img1);
-[imgtransforme,mask]=application_homographie(img1,h);
-
-<<<<<<< HEAD
+img1=imread('Img/coronair.tif');
+img2=imread('Img/centrale.tif');
 [h]=find_homotetie_man(img2,img1);
+[imgtransforme,mask]=application_homographie(img2,h);
 
-mosaique=create_mos(img1,img2,h);
-figure;
-imshow(mosaique);
-=======
+%[h]=find_homotetie_man(img2,img1);
+
+%mosaique=create_mos(img1,img2,h);
+%figure;
+%imshow(mosaique);
+
 % nouvelle image homographie 
 figure;
 imshow(uint8(imgtransforme));
@@ -26,13 +25,13 @@ imagesc(mask);
 for k=1:w
     for i=1:h
         if (mask(k,i)==1)
-            img2(k,i)=imgtransforme(k,i);
+            img1(k,i)=imgtransforme(k,i);
         end
     end
 end
 
 figure;
-imshow(img2);
+imshow(img1);
 title("image superposée");
 
 %mosaique=create_mos(img1,newim,h);
@@ -43,4 +42,4 @@ title("image superposée");
 % extrêmes, regarder min et max de chaque extremités pour avoir la taille
 % de la nouvelle image 
 % attention les coordonnées sont négatives
->>>>>>> e1e3b0ed689dfe981dd7e5416dab17a7779687ae
+
