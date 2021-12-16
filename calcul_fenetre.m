@@ -1,4 +1,4 @@
-function [B2]=calcul_fenetre(h,B)
+function [B2]=calcul_fenetre(hmat,B)
 
 h=B(1,2);
 w=B(2,1);
@@ -18,8 +18,8 @@ X(4)=floor((hmat(2,1)*1+hmat(2,2)*h+hmat(2,3))/(hmat(3,1)*1+hmat(3,2)*h+hmat(3,3
 B=zeros(4,2);
 
 for k=1:4
-    B(i,1)=X(i);
-    B(i,2)=Y(i);
+    B(k,1)=X(k);
+    B(k,2)=Y(k);
 end
 
 %dimension nouvelle image 

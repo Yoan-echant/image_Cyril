@@ -10,36 +10,48 @@ B(2,1)=max(B1(2,1),B2(2,1))-min(B1(2,2),B2(2,2));
 B(2,2)=1;
 
 %%Gestion du décalage sur x
-
-[min,i]=min(B1(1,1),B2(1,1));
-if (min <0)
+val1=B1(1,1);
+val2=B2(1,1);
+disp('xmin:')
+disp(val1)
+disp('ymin:')
+disp(val2)
+[mini]=min(val1,val2);
+if mini==val1
+    i=1;
+    mini=val2-val1;
+else
+    i=2;
+    mini=val1-val2
+end
+if (mini <0)
     if (i==1)
         nimg1=img1;
         nM1=M1;
         
-        nimg2=[zeros(B(2,1),-min,z1); img2];
-        nM2=[zeros(B(2,1),-min); M2];
+        nimg2=[zeros(B(2,1),-mini,z1); img2];
+        nM2=[zeros(B(2,1),-mini); M2];
     else
         nimg2=img2;
         nM2=M2;
-        nimg1=[zeros(B(2,1),-min,z1); img1];
-        nM1=[zeros(B(2,1),-min); M1];
+        nimg1=[zeros(B(2,1),-mini,z1); img1];
+        nM1=[zeros(B(2,1),-mini); M1];
     end
 end
 %%Gestion du décalage sur y
 
-[min,i]=min(B1(2,2),B2(2,2));
+[mini,i]=min(B1(2,2),B2(2,2));
 if (min <0)
     if (i==1)
         nimg1=img1;
         nM1=M1;
-        nimg2=[zeros(-min,B(1,2),z1), img2];
-        nM2=[zeros(-min,B(1,2)), M2];
+        nimg2=[zeros(-mini,B(1,2),z1), img2];
+        nM2=[zeros(-mini,B(1,2)), M2];
     else
         nimg2=img2;
         nM2=M2;
-        nimg1=[zeros(-min,B(1,2),z1), img1];
-        nM1=[zeros(-min,B(1,2)), M1];
+        nimg1=[zeros(-mini,B(1,2),z1), img1];
+        nM1=[zeros(-mini,B(1,2)), M1];
     end
 end
 
