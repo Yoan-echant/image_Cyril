@@ -15,9 +15,11 @@ function [h_fin]=find_homographie_man(X1,Y1,X2,Y2)
     h_fin(1,:)=h(1:3);
     h_fin(2,:)=h(4:6);
     h_fin(3,1:2)=h(7:8);
+
   
 
 end
+
     
 
 

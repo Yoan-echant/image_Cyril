@@ -8,11 +8,12 @@ img2=imread('Img/publicite1.jpg');
 
 Y1=[1       1      size(img2,1) size(img2,1)];
 X1=[1 size(img2,2) size(img2,2)     1       ];
-%subplot(1,2,2)
 figure,
 imshow(img1)
 [X2,Y2]=ginput(4);
-    
+
+
+
 [h]=find_homographie_man(X1,Y1,X2,Y2);
 [imgtransforme,mask]=application_homographie2(img2,h,img1);
 
