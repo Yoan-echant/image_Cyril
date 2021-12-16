@@ -1,9 +1,7 @@
-function [p1,p2]=calcul_fenetre(img,h)
-[image,mask]=application_homographie(img,h);
+function [B2]=calcul_fenetre(h,B)
 
-
-[h,w,z]=size(img);
-
+h=B(1,2);
+w=B(2,1);
 Y=zeros(4,1);
 X=zeros(4,1);
 
@@ -25,9 +23,12 @@ for k=1:4
 end
 
 %dimension nouvelle image 
-h=max(y)-min(y);
-w=max(x)-min(x);
+%h=max(y)-min(y);
+%w=max(x)-min(x);
 
-p1=[min(x),max(y)];
-p2=[max(x), min(y)];
+B2=zeros(2,2);
+B2(1,1)=min(X);
+B2(2,1)=max(Y);
+B2(1,2)=max(X);
+B2(2,2)=min(Y);
 end
