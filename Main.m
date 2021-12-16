@@ -19,38 +19,55 @@ imshow(img1)
 
 % nouvelle image homographie 
 figure;
-imshow(uint8(imgtransforme));
+imshow(uint8(imgtransforme));title("projection");
 figure;
 imagesc(mask);
+title("projection");
 
 % extraction image : 
-hinv=inv(h);
-[imgtransformebis,maskbis]=application_homographie2(img2,hinv,img1);
+Y1=[1       1      255 255];
+X1=[1 255 255     1];
+img=zeros(255,255,3);
+figure,
+imshow(img1)
+[X2,Y2]=ginput(4);
+[hbis]=find_homographie_man(X2,Y2,X1,Y1);
+[imgtransformebis,maskbis]=application_homographie2(img1,hbis,img);
+
 figure;
 imshow(uint8(imgtransformebis));
 figure;
 imagesc(maskbis);
+title("extraction");
+
+% creation mosaique : 
+% exemple pour trois image : 
+% imageref=img1 : 
+
+img1=zeros(256,256,3);
+img2=zeros(256,256,3);
+img3=zeros(256,256,3);
+[I M B]=creation_triplet(img1);
+% on créer une matrice contenant les coordonnées de chaque points
+nombreimage=3;
+coordonneesx=zeros(4,nombreimage);
+coordonnesy=zeros(4,nombreimage);
+coordonnesx(:,1)=[1 1 size(img,1) size(img,1)]';
+coordonnesy(:,1)=[1 size(img,2) size(img,2) 1 ]';
 
 
-% supoerposition image :
-%{
-[w,h,z ]=size(mask);
 
-for k=1:w
-    for i=1:h
-        if (mask(k,i)==1)
-            img1(k,i)=imgtransforme(k,i);
-        end
-    end
+for k=2:nombreimage
+    for i=
+    
+%     figure,
+%     imshow(img1)
+%     [X2,Y2]=ginput(4);
+%     coordonnesx(:,1)=X2';
+%     coordonnesy(:,1)=Y2';
+%     [I,M,B]=creation_mosaique(img1,img2,X1,Y1,X2,Y2)
 end
 
-figure;
-imshow(img1);
-title("image superposée");
-%}
-%mosaique=create_mos(img1,newim,h);
-
-%imagesc(mosaique);
 
 % faire l'homographie de l'image, calculer l'homographie des 4 points
 % extrêmes, regarder min et max de chaque extremités pour avoir la taille
