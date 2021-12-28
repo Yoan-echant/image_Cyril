@@ -48,10 +48,12 @@ title("extraction");
 img1=zeros(256,256,3);
 img2=zeros(256,256,3);
 img3=zeros(256,256,3);
+
 % tableau contenant toutes les images
 tabimg={img1, img2, img3};
 % création du triplet pour l'image de reférence
 [I M B]=creation_triplet(img1);
+
 % on créer une matrice contenant les coordonnées de chaque points
 nombreimage=3;
 % on va stocker l'ensemble des coordonnées selon x en sortie de chaque

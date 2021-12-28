@@ -14,7 +14,7 @@ val1=B1(1,1);
 val2=B2(1,1);
 disp('xmin:')
 disp(val1)
-disp('ymin:')
+disp('xmin:')
 disp(val2)
 [mini]=min(val1,val2);
 if mini==val1
@@ -22,7 +22,7 @@ if mini==val1
     mini=val2-val1;
 else
     i=2;
-    mini=val1-val2
+    mini=val1-val2;
 end
 if (mini <0)
     if (i==1)
@@ -37,11 +37,30 @@ if (mini <0)
         nimg1=[zeros(B(2,1),-mini,z1); img1];
         nM1=[zeros(B(2,1),-mini); M1];
     end
+else
+    nM1=M1;
+    nimg1=img1;
+    nimg2=img2;
+    nM2=M2;
 end
 %%Gestion du décalage sur y
 
-[mini,i]=min(B1(2,2),B2(2,2));
-if (min <0)
+val1=B1(2,2);
+val2=B2(2,2);
+disp('ymin:')
+disp(val1)
+disp('ymin:')
+disp(val2)
+[mini]=min(val1,val2);
+if mini==val1
+    i=1;
+    mini=val2-val1;
+    else
+    i=2;
+    mini=val1-val2;
+end
+
+if (mini <0)
     if (i==1)
         nimg1=img1;
         nM1=M1;
@@ -53,6 +72,11 @@ if (min <0)
         nimg1=[zeros(-mini,B(1,2),z1), img1];
         nM1=[zeros(-mini,B(1,2)), M1];
     end
+else
+    nM1=M1;
+    nimg1=img1;
+    nimg2=img2;
+    nM2=M2;
 end
 
 
