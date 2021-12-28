@@ -114,7 +114,7 @@ end
      [Ibis,Mbis,Bbis]=creation_triplet(tabimg{p});% creation triplet image numéro p
      [imgbis Mbis2 Bbis2]=application_homographie(Ibis,Mbis,Bbis,matriceh(:,:,p));  % multiplication par h(p)
      % fusion avec image de base; 
-     [I,M,B]=fusion(img1,M1,B1,imgbis,Mbis2,Bbis2)
+     [I,M,B]=fusion(img1,Mbis,Bbis,imgbis,Mbis2,Bbis2)
  end
     
 %end
