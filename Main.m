@@ -52,7 +52,7 @@ img3=zeros(256,256,3);
 % tableau contenant toutes les images
 tabimg={img1, img2, img3};
 % création du triplet pour l'image de reférence
-[I M B]=creation_triplet(img1);
+[I, M, B]=creation_triplet(img1);
 
 % on créer une matrice contenant les coordonnées de chaque points
 nombreimage=3;
@@ -92,7 +92,7 @@ end
     for i=2:nombreimage
         compteurinit=i-1; % même chose que compteur mais pour conserver la valeur de base.
         compteur=i-1;% nombre d'opérations à effectuer pour se ramener à l'image de ref qui est 1
-        tabhtmp=zeros(3,3,compteur) % tableau temporaire contenant les matrices h 
+        tabhtmp=zeros(3,3,compteur); % tableau temporaire contenant les matrices h 
         while(compteur ~=0)
             tabhtmp(:,:,compteur)=find_homographie_man(coordonnesx(:,compteur+1)',coordonnesy(:,compteur+1)',coordonnesx(:,compteur)',coordonnesy(:,compteur)');
             compteur=compteur-1;
