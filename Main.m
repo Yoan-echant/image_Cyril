@@ -24,7 +24,7 @@ imshow(uint8(imgtransforme));title("projection");
 figure;
 imagesc(mask);
 title("projection");
-
+%{
 % extraction image : 
 Y1=[1       1      255 255];
 X1=[1 255 255     1];
@@ -145,5 +145,5 @@ end
 % On fait donc H12-1 pour ramener 2 vers 1
 % Pour ramener 3 vers 1 on fait (H23H12)-1. On applique fonction 4. On fait
 % une cascade d'appel. 
-
+%}
 

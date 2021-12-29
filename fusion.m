@@ -1,12 +1,12 @@
 function [img,M,B]=fusion(img1,M1,B1,img2,M2,B2)
 [h1,w1,z1]=size(img1);
-[h2,w2,z2]=size(img1);
+[h2,w2,z2]=size(img2);
 if (z1~=z2)
     disp('erreur, les deux images ne sont pas de même tailles en z')
 end
 B(1,1)=1;
-B(1,2)=max(B1(1,2),B2(1,2))-min(B1(1,1),B2(1,1));
-B(2,1)=max(B1(2,1),B2(2,1))-min(B1(2,2),B2(2,2));
+B(1,2)=max(B1(1,2),B2(1,2))-min(B1(1,1),B2(1,1))+1;
+B(2,1)=max(B1(2,1),B2(2,1))-min(B1(2,2),B2(2,2))+1;
 B(2,2)=1;
 
 %%Gestion du décalage sur x
@@ -24,18 +24,21 @@ else
     i=2;
     mini=val1-val2;
 end
-if (mini <0)
+if (mini >0)
     if (i==1)
         nimg1=img1;
         nM1=M1;
-        
-        nimg2=[zeros(B(2,1),-mini,z1); img2];
-        nM2=[zeros(B(2,1),-mini); M2];
+        A=zeros(size(img2,1),mini,z2);
+        disp(size(img2))
+        disp(size(A))
+        nimg2=[A img2];
+        nM2=[zeros(size(M2,1),mini), M2];
     else
         nimg2=img2;
         nM2=M2;
-        nimg1=[zeros(B(2,1),-mini,z1); img1];
-        nM1=[zeros(B(2,1),-mini); M1];
+        
+        nimg1=[zeros(size(img1,1),mini,z1), img1];
+        nM1=[zeros(size(M1,1),mini), M1];
     end
 else
     nM1=M1;
@@ -43,6 +46,8 @@ else
     nimg2=img2;
     nM2=M2;
 end
+
+
 %%Gestion du décalage sur y
 
 val1=B1(2,2);
@@ -60,17 +65,25 @@ if mini==val1
     mini=val1-val2;
 end
 
-if (mini <0)
+if (mini >0)
     if (i==1)
         nimg1=img1;
         nM1=M1;
-        nimg2=[zeros(-mini,B(1,2),z1), img2];
-        nM2=[zeros(-mini,B(1,2)), M2];
+        nimg2=[zeros(mini,size(img2,2),z2); img2];
+        nM2=[zeros(mini,size(M2,2)); M2];
     else
         nimg2=img2;
         nM2=M2;
-        nimg1=[zeros(-mini,B(1,2),z1), img1];
-        nM1=[zeros(-mini,B(1,2)), M1];
+
+         disp('size')
+        disp(size(img1))
+        disp('décalage')
+        disp(mini)
+        disp('taille vert:')
+        disp(size(img1,2))
+
+        nimg1=[zeros(mini,size(img1,2),z1); img1];
+        nM1=[zeros(mini,size(M1,2)); M1];
     end
 else
     nM1=M1;
@@ -80,6 +93,16 @@ else
 end
 
 
+[nimg1,nimg2,nM1,nM2]=complete(nimg1,nimg2,nM1,nM2);
+figure,
+subplot(2,2,1)
+imshow(nimg1)
+subplot(2,2,2)
+imshow(nimg2)
+subplot(2,2,3)
+imshow(nM1)
+subplot(2,2,4)
+imshow(nM2)
 %%Fusion
 img=zeros(B(2,1),B(1,2),z1);
 M=zeros(B(2,1),B(1,2));
