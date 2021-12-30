@@ -10,12 +10,9 @@ B(2,1)=max(B1(2,1),B2(2,1))-min(B1(2,2),B2(2,2))+1;
 B(2,2)=1;
 
 %%Gestion du décalage sur x
-val1=B1(1,1);
-val2=B2(1,1);
-disp('xmin:')
-disp(val1)
-disp('xmin:')
-disp(val2)
+val1=B1(2,2);
+val2=B2(2,2);
+
 [mini]=min(val1,val2);
 if mini==val1
     i=1;
@@ -29,8 +26,7 @@ if (mini >0)
         nimg1=img1;
         nM1=M1;
         A=zeros(size(img2,1),mini,z2);
-        disp(size(img2))
-        disp(size(A))
+        
         nimg2=[A img2];
         nM2=[zeros(size(M2,1),mini), M2];
     else
@@ -50,12 +46,9 @@ end
 
 %%Gestion du décalage sur y
 
-val1=B1(2,2);
-val2=B2(2,2);
-disp('ymin:')
-disp(val1)
-disp('ymin:')
-disp(val2)
+val1=B1(1,1);
+val2=B2(1,1);
+
 [mini]=min(val1,val2);
 if mini==val1
     i=1;
@@ -75,12 +68,7 @@ if (mini >0)
         nimg2=img2;
         nM2=M2;
 
-         disp('size')
-        disp(size(img1))
-        disp('décalage')
-        disp(mini)
-        disp('taille vert:')
-        disp(size(img1,2))
+        
 
         nimg1=[zeros(mini,size(img1,2),z1); img1];
         nM1=[zeros(mini,size(M1,2)); M1];
@@ -106,8 +94,9 @@ imshow(nM2)
 %%Fusion
 img=zeros(B(2,1),B(1,2),z1);
 M=zeros(B(2,1),B(1,2));
-for y=1:B(2,1)
-    for x=1:B(1,2)
+
+for x=1:B(2,1)
+    for y=1:B(1,2)
         if (nM2(y,x)==1)
             img(y,x)=nimg2(y,x);
             M(y,x)=1;
