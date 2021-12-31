@@ -83,13 +83,14 @@ end
 %%Fusion
 img=zeros(B(2,1),B(1,2),z1);
 M=zeros(B(2,1),B(1,2));
+
 for y=1:B(2,1)
     for x=1:B(1,2)
         if (nM2(y,x)==1)
-            img(y,x)=nimg2(y,x);
+            img(y,x,:)=nimg2(y,x,:);
             M(y,x)=1;
         elseif (nM1(y,x)==1)
-            img(y,x)=nimg1(y,x);
+            img(y,x,:)=nimg1(y,x,:);
             M(y,x)=1;
         else
             M(y,x)=0;

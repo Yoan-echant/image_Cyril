@@ -14,4 +14,4 @@ imshow(img1)
 
 [I3,M3,B3]=creation_mosaique(img1,img2,X1,Y1,X2,Y2);
 
-imshow(I3);
+imshow(uint8(I3));

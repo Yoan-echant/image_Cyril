@@ -20,10 +20,10 @@ imshow(img1)
 
 % nouvelle image homographie 
 figure;
-imshow(uint8(imgtransforme));title("projection");
+imshow(uint8(imgtransforme));title("Projection d'une image sur une autre");
 figure;
 imagesc(mask);
-title("projection");
+title("Projection d'une image sur une autre ");
 
 % extraction image : 
 Y1=[1       1      255 255];
@@ -37,6 +37,7 @@ imshow(img1)
 
 figure;
 imshow(uint8(imgtransformebis));
+title("Extraction d'une partie de l'image");
 figure;
 imagesc(maskbis);
 title("extraction");
