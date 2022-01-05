@@ -3,8 +3,7 @@ hmat=inv(hm);
 
 [h2,w2,z2]=size(img1);
 
-disp('original')
-disp(B)
+
 y1=floor((hm(1,1)*B(2,1)+hm(1,2)*B(1,1)+hm(1,3))/(hm(3,1)*B(2,1)+hm(3,2)*B(1,1)+hm(3,3)));
 x1=floor((hm(2,1)*B(2,1)+hm(2,2)*B(1,1)+hm(2,3))/(hm(3,1)*B(2,1)+hm(3,2)*B(1,1)+hm(3,3)));
 
@@ -19,9 +18,7 @@ x4=floor((hm(2,1)*B(2,2)+hm(2,2)*B(1,1)+hm(2,3))/(hm(3,1)*B(2,2)+hm(3,2)*B(1,1)+
 
 X=[x1,x2,x3,x4];
 Y=[y1,y2,y3,y4];
-disp('coord')
-disp(X)
-disp(Y)
+
 Bf=[min(X), max(X);max(Y),min(Y)];
 disp(Bf)
 
