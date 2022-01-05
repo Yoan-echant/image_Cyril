@@ -4,6 +4,7 @@ function [img,M,B]=fusion(img1,M1,B1,img2,M2,B2)
 if (z1~=z2)
     disp('erreur, les deux images ne sont pas de même tailles en z')
 end
+
 B(1,1)=1;
 B(1,2)=max(B1(1,2),B2(1,2))-min(B1(1,1),B2(1,1))+1;
 B(2,1)=max(B1(2,1),B2(2,1))-min(B1(2,2),B2(2,2))+1;
@@ -23,24 +24,24 @@ else
 end
 if (mini >0)
     if (i==1)
-        nimg1=img1;
-        nM1=M1;
+        tnimg1=img1;
+        tnM1=M1;
         A=zeros(size(img2,1),mini,z2);
         
-        nimg2=[A img2];
-        nM2=[zeros(size(M2,1),mini), M2];
+        tnimg2=[A img2];
+        tnM2=[zeros(size(M2,1),mini), M2];
     else
-        nimg2=img2;
-        nM2=M2;
+        tnimg2=img2;
+        tnM2=M2;
         
-        nimg1=[zeros(size(img1,1),mini,z1), img1];
-        nM1=[zeros(size(M1,1),mini), M1];
+        tnimg1=[zeros(size(img1,1),mini,z1), img1];
+        tnM1=[zeros(size(M1,1),mini), M1];
     end
 else
-    nM1=M1;
-    nimg1=img1;
-    nimg2=img2;
-    nM2=M2;
+    tnM1=M1;
+    tnimg1=img1;
+    tnimg2=img2;
+    tnM2=M2;
 end
 
 
@@ -60,24 +61,24 @@ end
 
 if (mini >0)
     if (i==1)
-        nimg1=img1;
-        nM1=M1;
-        nimg2=[zeros(mini,size(img2,2),z2); img2];
-        nM2=[zeros(mini,size(M2,2)); M2];
+        nimg1=tnimg1;
+        nM1=tnM1;
+        nimg2=[zeros(mini,size(tnimg2,2),z2); tnimg2];
+        nM2=[zeros(mini,size(tnM2,2)); tnM2];
     else
-        nimg2=img2;
-        nM2=M2;
+        nimg2=tnimg2;
+        nM2=tnM2;
 
         
 
-        nimg1=[zeros(mini,size(img1,2),z1); img1];
-        nM1=[zeros(mini,size(M1,2)); M1];
+        nimg1=[zeros(mini,size(tnimg1,2),z1); tnimg1];
+        nM1=[zeros(mini,size(tnM1,2)); tnM1];
     end
 else
-    nM1=M1;
-    nimg1=img1;
-    nimg2=img2;
-    nM2=M2;
+    nM1=tnM1;
+    nimg1=tnimg1;
+    nimg2=tnimg2;
+    nM2=tnM2;
 end
 
 
@@ -86,7 +87,7 @@ figure,
 subplot(2,2,1)
 imshow(nimg1)
 subplot(2,2,2)
-imshow(nimg2)
+imshow(uint8(nimg2))
 subplot(2,2,3)
 imshow(nM1)
 subplot(2,2,4)
@@ -98,10 +99,10 @@ M=zeros(B(2,1),B(1,2));
 for x=1:B(2,1)
     for y=1:B(1,2)
         if (nM2(y,x)==1)
-            img(y,x)=nimg2(y,x);
+            img(y,x,:)=nimg2(y,x,:);
             M(y,x)=1;
         elseif (nM1(y,x)==1)
-            img(y,x)=nimg1(y,x);
+            img(y,x,:)=nimg1(y,x,:);
             M(y,x)=1;
         else
             M(y,x)=0;
