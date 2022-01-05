@@ -5,10 +5,10 @@ close all;
 img1=imread('Img/immeuble.png');
 %img1=imread('Img/coronair.tif')
 img2=imread('Img/publicite1.jpg');
-
-Y1=[1       1      size(img2,1) size(img2,1)];
-X1=[1 size(img2,2) size(img2,2)     1       ];
 figure,
+imshow(img2)
+[X1,Y1]=ginput(4);
+
 imshow(img1)
 [X2,Y2]=ginput(4);
 

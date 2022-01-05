@@ -20,12 +20,12 @@ else
 end
 
 
-if h1<h2
+if w1<w2
     nimg1=[rimg1,zeros(max(h1,h2),w2-w1,z1)];
     nimg2=rimg2;
     nM1=[rM1,zeros(max(h1,h2),w2-w1)];
     nM2=rM2;
-elseif h2<h1
+elseif w2<w1
     nimg2=[rimg2,zeros(max(h1,h2),w1-w2,z2)];
     nimg1=rimg1;
     nM2=[rM2,zeros(max(h1,h2),w1-w2)];

@@ -96,6 +96,11 @@ imshow(nM2)
 img=zeros(B(2,1),B(1,2),z1);
 M=zeros(B(2,1),B(1,2));
 
+disp('sizes')
+disp(size(nimg2))
+disp(size(nimg1))
+disp('B')
+disp(B)
 for x=1:B(2,1)
     for y=1:B(1,2)
         if (nM2(y,x)==1)
