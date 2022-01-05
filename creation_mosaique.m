@@ -11,13 +11,14 @@ subplot(2,2,1)
 imshow(img2)
 subplot(2,2,3)
 imshow(M2)
-[img2, M2, B2]=application_homographie(img2,M2,B2,h);
+[nimg2, M2, B2]=application_homographie(img2,M2,B2,h);
 subplot(2,2,2)
-imshow(img2)
+imshow(uint8(nimg2))
+title('homo')
 subplot(2,2,4)
 imshow(M2)
 % fusion :
-[I3,M3,B3]=fusion(img,M1,B1,img2,M2,B2);
+[I3,M3,B3]=fusion(img,M1,B1,nimg2,M2,B2);
 
 
 
